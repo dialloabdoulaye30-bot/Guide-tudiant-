@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Guide du bachelier — Métiers du Patrimoine · UGB</title>
+<meta name="description" content="Guide du bachelier orienté en Licence Métiers du Patrimoine, UFR CRAC, Université Gaston Berger de Saint-Louis.">
+<meta name="theme-color" content="#182740">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Patrimoine UGB">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1E6D2;
+    --paper-dark:#E5D6B8;
+    --ink:#2B2117;
+    --ink-soft:#5A4E3F;
+    --indigo:#233A5C;
+    --indigo-deep:#182740;
+    --ochre:#BD7B3C;
+    --terracotta:#9B3B2C;
+    --sage:#5F6E4C;
+    --line:rgba(43,33,23,0.18);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(43,33,23,0.06) 1px, transparent 0);
+    background-size:14px 14px;
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--ochre); color:var(--paper);}
+
+  /* ---------- Header ---------- */
+  header{
+    background:var(--indigo-deep);
+    color:var(--paper);
+    padding:28px 20px 22px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:6px solid var(--ochre);
+  }
+  header::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:repeating-linear-gradient(135deg, rgba(241,230,210,0.035) 0 2px, transparent 2px 14px);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ochre);
+    display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{content:"◆"; font-size:8px;}
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:clamp(28px,7vw,40px);
+    line-height:1.05;
+    margin:10px 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-size:14px;
+    color:rgba(241,230,210,0.78);
+    max-width:46ch;
+    line-height:1.5;
+  }
+  .seal{
+    position:absolute;
+    top:20px; right:18px;
+    width:64px; height:64px;
+    border-radius:50%;
+    border:2px solid var(--ochre);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9px;
+    text-align:center;
+    color:var(--ochre);
+    line-height:1.2;
+    transform:rotate(8deg);
+  }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:20;
+    background:var(--paper-dark);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  nav::-webkit-scrollbar{display:none;}
+  nav button{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.03em;
+    white-space:nowrap;
+    background:none;
+    border:none;
+    border-right:1px solid var(--line);
+    color:var(--ink-soft);
+    padding:13px 16px;
+    cursor:pointer;
+    position:relative;
+    transition:color .15s;
+  }
+  nav button.active{
+    color:var(--terracotta);
+    font-weight:700;
+    background:var(--paper);
+  }
+  nav button.active::after{
+    content:"";
+    position:absolute; bottom:-1px; left:0; right:0;
+    height:3px; background:var(--terracotta);
+  }
+
+  main{ max-width:640px; margin:0 auto; padding:22px 18px 60px; }
+  section{ display:none; animation:fade .25s ease; }
+  section.active{ display:block; }
+  @keyframes fade{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
+
+  h2.section-title{
+    font-family:'Fraunces', serif;
+    font-size:24px;
+    font-weight:700;
+    color:var(--indigo);
+    margin:0 0 4px;
+    display:flex; align-items:baseline; gap:10px;
+  }
+  h2.section-title .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ochre);
+    font-weight:500;
+  }
+  .section-lede{
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    margin:0 0 22px;
+    padding-bottom:18px;
+    border-bottom:1px dashed var(--line);
+  }
+
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:16px 16px 14px;
+    margin-bottom:14px;
+    position:relative;
+  }
+  .card::before{
+    content:"";
+    position:absolute; left:0; top:10px; bottom:10px; width:3px;
+    background:var(--ochre);
+  }
+  .card h3{
+    font-family:'Fraunces', serif;
+    font-size:16px;
+    font-weight:600;
+    margin:0 0 6px;
+    color:var(--ink);
+  }
+  .card p{ font-size:13.5px; line-height:1.6; color:var(--ink-soft); margin:0; }
+  .tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.05em;
+    padding:2px 7px;
+    border:1px solid var(--indigo);
+    color:var(--indigo);
+    border-radius:2px;
+    margin-bottom:8px;
+  }
+  .tag.warn{ border-color:var(--terracotta); color:var(--terracotta); }
+
+  /* fiche registre (parcours) */
+  .fiche{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:16px;
+    margin-bottom:14px;
+    display:flex; gap:14px; align-items:flex-start;
+    background-image:linear-gradient(var(--line) 1px, transparent 1px);
+    background-size:100% 22px;
+    background-position:0 46px;
+  }
+  .badge{
+    flex:0 0 auto;
+    width:46px; height:46px;
+    border-radius:50%;
+    border:2px solid var(--sage);
+    color:var(--sage);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:700;
+    font-size:11px;
+  }
+  .fiche.locked .badge{ border-color:var(--ink-soft); color:var(--ink-soft); border-style:dashed; }
+  .fiche-body h3{ font-family:'Fraunces', serif; font-size:16px; margin:0 0 3px; }
+  .fiche-body .meta{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-soft); margin-bottom:6px; }
+  .fiche-body p{ font-size:13px; line-height:1.55; color:var(--ink-soft); margin:0; }
+
+  .timeline{ margin:0; padding:0; list-style:none; }
+  .timeline li{
+    position:relative;
+    padding:0 0 20px 26px;
+    border-left:2px solid var(--line);
+    margin-left:6px;
+  }
+  .timeline li:last-child{ border-left-color:transparent; padding-bottom:0; }
+  .timeline li::before{
+    content:attr(data-n);
+    position:absolute; left:-13px; top:0;
+    width:24px; height:24px;
+    border-radius:50%;
+    background:var(--indigo);
+    color:var(--paper);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .timeline h4{ font-size:14.5px; margin:0 0 4px; font-weight:700; color:var(--ink); }
+  .timeline p{ font-size:13px; color:var(--ink-soft); line-height:1.55; margin:0; }
+  .timeline .date{
+    display:inline-block; margin-top:5px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    color:var(--terracotta);
+    background:rgba(155,59,44,0.08);
+    padding:1px 6px; border-radius:2px;
+  }
+
+  .alert{
+    background:rgba(189,123,60,0.12);
+    border:1px solid var(--ochre);
+    border-radius:3px;
+    padding:12px 14px;
+    font-size:12.5px;
+    color:var(--ink);
+    line-height:1.55;
+    margin:16px 0;
+  }
+  .alert strong{ color:var(--terracotta); }
+
+  table.docs{ width:100%; border-collapse:collapse; font-size:13px; margin:8px 0 18px; }
+  table.docs td{ padding:8px 4px; border-bottom:1px solid var(--line); vertical-align:top; }
+  table.docs td:first-child{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ochre); width:26px; }
+
+  .contact-block{
+    background:var(--indigo-deep);
+    color:var(--paper);
+    border-radius:3px;
+    padding:18px;
+    margin-top:6px;
+  }
+  .contact-block .row{ display:flex; gap:10px; margin-bottom:10px; font-size:13.5px; }
+  .contact-block .row:last-child{ margin-bottom:0; }
+  .contact-block .k{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ochre); flex:0 0 76px; padding-top:2px;}
+
+  .sources{
+    margin-top:26px;
+    padding-top:16px;
+    border-top:1px dashed var(--line);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+  .sources h4{ font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--indigo); margin:0 0 8px;}
+  .sources a{ color:var(--terracotta); text-decoration:none; word-break:break-all;}
+  .sources li{ margin-bottom:5px; line-height:1.5; }
+
+  footer{
+    text-align:center;
+    padding:20px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Install banner / button ---------- */
+  #installBar{
+    position:fixed; left:0; right:0; bottom:0; z-index:50;
+    background:var(--indigo-deep);
+    color:var(--paper);
+    padding:12px 16px;
+    display:none;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 -6px 18px rgba(0,0,0,0.18);
+    border-top:3px solid var(--ochre);
+  }
+  #installBar.show{ display:flex; }
+  #installBar .txt{ flex:1; font-size:12.5px; line-height:1.4; }
+  #installBar .txt strong{ display:block; font-family:'Fraunces', serif; font-size:14px; font-weight:700; margin-bottom:2px; }
+  #installBar button{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; font-weight:700;
+    background:var(--ochre); color:var(--indigo-deep);
+    border:none; border-radius:2px;
+    padding:9px 12px; cursor:pointer; white-space:nowrap;
+  }
+  #installBar .dismiss{
+    background:none; color:var(--paper); opacity:0.6;
+    padding:9px 6px; font-weight:400;
+  }
+
+  .ios-modal{
+    position:fixed; inset:0; z-index:60;
+    background:rgba(24,39,64,0.72);
+    display:none; align-items:flex-end; justify-content:center;
+  }
+  .ios-modal.show{ display:flex; }
+  .ios-modal .sheet{
+    background:var(--paper); width:100%; max-width:640px;
+    border-radius:12px 12px 0 0; padding:20px 20px 26px;
+    font-size:13.5px; line-height:1.6;
+  }
+  .ios-modal h4{ font-family:'Fraunces', serif; font-size:18px; margin:0 0 10px; color:var(--indigo); }
+  .ios-modal ol{ margin:0 0 14px; padding-left:18px; }
+  .ios-modal .share-icon{ font-family:'IBM Plex Mono', monospace; background:var(--indigo); color:var(--paper); padding:1px 6px; border-radius:3px; font-size:11px; }
+  .ios-modal button.close{
+    width:100%; background:var(--indigo-deep); color:var(--paper);
+    border:none; border-radius:4px; padding:12px; font-size:13px;
+    font-family:'IBM Plex Mono', monospace; cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="seal">UFR<br>CRAC<br>UGB</div>
+  <div class="eyebrow">Guide du nouveau bachelier</div>
+  <h1 class="title">Métiers du<br>Patrimoine</h1>
+  <p class="subtitle">Licence de l'UFR Civilisations, Religions, Arts et Communication — Université Gaston Berger, Saint-Louis du Sénégal.</p>
+</header>
+
+<nav id="nav"></nav>
+
+<main id="main"></main>
+
+<footer>Sources : ugb.sn · www9.ugb.sn/crac · crous-ugb.sn · orientation.campusen.sn — Contenu à vérifier chaque année auprès de l'UFR CRAC.</footer>
+
+<div id="installBar">
+  <div class="txt"><strong>Installer l'application</strong>Ajoutez ce guide à votre écran d'accueil pour l'ouvrir hors ligne, comme une app.</div>
+  <button id="installBtn">Installer</button>
+  <button class="dismiss" id="dismissBtn">✕</button>
+</div>
+
+<div class="ios-modal" id="iosModal">
+  <div class="sheet">
+    <h4>Installer sur iPhone / iPad</h4>
+    <ol>
+      <li>Touchez l'icône de partage <span class="share-icon">⬆︎ Partager</span> en bas de Safari.</li>
+      <li>Faites défiler et choisissez <strong>« Sur l'écran d'accueil »</strong>.</li>
+      <li>Touchez <strong>Ajouter</strong> — l'icône apparaît comme une app normale.</li>
+    </ol>
+    <button class="close" onclick="document.getElementById('iosModal').classList.remove('show')">Compris</button>
+  </div>
+</div>
+
+<script>
+const sections = [
+  {
+    id: "accueil",
+    label: "Accueil",
+    title: "Bienvenue",
+    lede: "Ce guide réunit, à partir des pages officielles de l'UGB et de l'UFR CRAC, ce qu'il faut savoir pour rejoindre et réussir la Licence Métiers du Patrimoine.",
+    html: `
+      <div class="card">
+        <span class="tag">UFR CRAC</span>
+        <h3>Une UFR dédiée aux civilisations, religions, arts et communication</h3>
+        <p>L'UFR CRAC a été créée par le décret n°2010-1455 du 5 novembre 2010, dans une logique d'africanisation de la formation à l'UGB. Elle regroupe six sections, dont la section Métiers du Patrimoine (MDP), et propose plusieurs licences et masters en lettres, arts, communication et patrimoine.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Pourquoi cette filière</span>
+        <h3>Former les futurs professionnels du patrimoine</h3>
+        <p>La section MDP travaille en lien avec le Bureau régional de l'UNESCO à Dakar pour intégrer les conventions internationales de sauvegarde du patrimoine culturel (matériel et immatériel) dans son curriculum, en vue de former des cadres pour les musées, sites, archives et institutions culturelles.</p>
+      </div>
+      <div class="alert"><strong>À utiliser avec ce guide :</strong> les onglets ci-dessus détaillent la Licence, les parcours, la procédure d'orientation Campusen, l'inscription à l'UGB et les contacts officiels.</div>
+    `
+  },
+  {
+    id: "licence",
+    label: "La Licence",
+    title: "Licence Métiers du Patrimoine",
+    lede: "Diplôme de 3 ans, organisé en tronc commun puis en spécialisation.",
+    html: `
+      <div class="card">
+        <span class="tag">Structure</span>
+        <h3>Tronc commun (L1–L2) puis spécialisation (L3)</h3>
+        <p>Les deux premières années se déroulent en tronc commun. La spécialisation dans l'un des trois parcours démarre en 3ᵉ année (L3). Durée totale des études : 3 ans.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Admission</span>
+        <h3>Conditions d'accès</h3>
+        <p>La formation est ouverte aux titulaires du baccalauréat de l'année en cours, ou d'un diplôme équivalent, montrant un intérêt marqué pour les questions liées au patrimoine.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Objectifs</span>
+        <h3>Ce que vise la formation</h3>
+        <p>Former des professionnels aptes à gérer une institution du patrimoine (musée, archives et bibliothèques nationales, centres et instituts de recherche, centres de conservation du patrimoine matériel ou immatériel), et capables de communiquer avec différents publics à travers des collections : ouvrages, photographies, immeubles, sites historiques, objets, sites naturels.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Poursuite d'études</span>
+        <h3>Après la licence : le Master</h3>
+        <p>Le Master « Gestion des biens, sites et institutions du patrimoine » de l'UFR CRAC est ouvert aux titulaires de la Licence Métiers du Patrimoine (ou formation connexe), ainsi qu'aux professionnels dont l'expérience est reconnue comme acquis. Il propose deux parcours : Patrimoine Culturel Immatériel (PCI) et Gestion des Sites du Patrimoine et des Institutions culturelles (GSPIC). Durée : 2 ans.</p>
+      </div>
+    `
+  },
+  {
+    id: "parcours",
+    label: "Parcours",
+    title: "Les 3 parcours de spécialisation",
+    lede: "À partir de la 3ᵉ année, chaque étudiant choisit l'un des parcours suivants.",
+    html: `
+      <div class="fiche">
+        <div class="badge">GPIC</div>
+        <div class="fiche-body">
+          <h3>Gestion du patrimoine et des institutions culturelles</h3>
+          <div class="meta">PARCOURS 1 · OUVERT</div>
+          <p>Prépare à la gestion d'institutions patrimoniales : musées, archives, bibliothèques nationales, centres de conservation et de recherche.</p>
+        </div>
+      </div>
+      <div class="fiche">
+        <div class="badge">MC</div>
+        <div class="fiche-body">
+          <h3>Médiation Culturelle</h3>
+          <div class="meta">PARCOURS 2 · OUVERT</div>
+          <p>Axé sur la communication avec les différents publics autour des collections et des sites : mise en valeur, transmission, action culturelle.</p>
+        </div>
+      </div>
+      <div class="fiche locked">
+        <div class="badge">RBC</div>
+        <div class="fiche-body">
+          <h3>Restauration de Biens Culturels</h3>
+          <div class="meta">PARCOURS 3 · EN CONSTRUCTION</div>
+          <p>Parcours annoncé par l'UFR CRAC mais non encore pleinement déployé selon les informations officielles disponibles. À vérifier auprès de l'UFR avant de le viser en spécialisation.</p>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: "vie-etudiante",
+    label: "Vie étudiante",
+    title: "S'installer sur le campus",
+    lede: "Le CROUS (Centre Régional des Œuvres Universitaires de Saint-Louis) organise l'hébergement, la restauration, la santé et le transport de tous les étudiants de l'UGB.",
+    html: `
+      <div class="card">
+        <span class="tag">Accueil des nouveaux</span>
+        <h3>Le monitorat, pensé pour les nouveaux bacheliers</h3>
+        <p>Des étudiants en Master et Doctorat (les « moniteurs ») accueillent, informent et orientent les nouveaux entrants sur les campus social et pédagogique : aide aux démarches d'inscription, à la codification, à la visite médicale, distribution du guide du nouvel étudiant et du livret LMD. Un dispositif de tutorat accompagne aussi les étudiants durant les deux premières années de Licence.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Hébergement</span>
+        <h3>17 villages universitaires</h3>
+        <p>Les étudiants orientés à l'UGB sont logés au campus social, réparti en 17 résidences appelées « villages universitaires », gérées par le Service de l'Hébergement du CROUS.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Restauration</span>
+        <h3>Repas subventionnés</h3>
+        <p>Deux restaurants (1200 et 500 places) proposent des repas à tarif préférentiel les jours ouvrables : petit-déjeuner 75 F (7h–9h30), déjeuner 150 F (11h30–14h), dîner 150 F (19h–21h30). Les horaires peuvent varier avec le système LMD.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Santé</span>
+        <h3>Couverture médicale</h3>
+        <p>Sur présentation de la carte d'étudiant, chaque étudiant a droit à une couverture médicale et sanitaire complète (consultation, hospitalisation, examens radiologiques et biologiques), via un service médical CROUS de 5 salles et 10 lits. Une participation d'1/5 du coût reste à la charge de l'étudiant pour la pharmacie et les prothèses dentaires mobiles.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Transport</span>
+        <h3>Se déplacer à Saint-Louis</h3>
+        <p>En ville : taxis « clandos » (250 F) et bus TATA (150 F le trajet). Le CROUS met aussi à disposition des bus à 50 F le ticket les mercredis soir, week-ends et jours fériés pour faciliter les déplacements en ville.</p>
+      </div>
+    `
+  },
+  {
+    id: "amicale",
+    label: "Amicale & clubs",
+    title: "Vie associative de l'UFR CRAC",
+    lede: "S'intégrer, c'est aussi rejoindre la vie associative propre à l'UFR CRAC.",
+    html: `
+      <div class="card">
+        <span class="tag">Association étudiante</span>
+        <h3>AMECRAC — l'Amicale des étudiants de l'UFR CRAC</h3>
+        <p>Créée le 18 mai 2012, conformément au décret n°68-860 du 24 juillet 1968 relatif aux associations d'étudiants de l'enseignement supérieur, l'AMECRAC regroupe tous les étudiants régulièrement inscrits à l'UFR CRAC.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Représentation</span>
+        <h3>Délégués et coordination des étudiants</h3>
+        <p>Chaque promotion élit ses délégués (par ex. le délégué de Licence 1), qui font le lien avec l'équipe pédagogique. À l'échelle de l'université, la Coordination des Étudiants de Saint-Louis (CESL) et la Commission sociale des étudiants représentent les étudiants auprès du CROUS et de l'administration.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Réseau</span>
+        <h3>Wasanar — Alumni</h3>
+        <p>Le réseau des anciens étudiants de l'UFR CRAC, utile pour garder le contact avec les diplômés des filières patrimoine, arts et communication après la licence ou le master.</p>
+      </div>
+      <div class="alert"><strong>Rentrée :</strong> à chaque rentrée, l'UFR CRAC organise un amphi de rentrée par section, avec présentation de la filière et élection des délégués de Licence 1 — un bon premier contact avec l'équipe pédagogique et les autres étudiants.</div>
+    `
+  },
+  {
+    id: "orientation",
+    label: "Orientation",
+    title: "Orientation via Campusen",
+    lede: "L'admission dans les universités publiques sénégalaises, dont l'UGB, passe exclusivement par la plateforme nationale Campusen — l'UGB n'a pas la main sur ce processus.",
+    html: `
+      <div class="alert"><strong>Plateforme unique :</strong> orientation.campusen.sn — gérée par la Direction générale de l'Enseignement supérieur (DGES) du Ministère de l'Enseignement Supérieur, de la Recherche et de l'Innovation (MESRI). L'UGB rappelle que tout bachelier n'ayant pas formulé sa demande sur Campusen dans les délais ne sera pas orienté.</div>
+      <ol class="timeline">
+        <li data-n="1">
+          <h4>Créer un compte et obtenir son INE</h4>
+          <p>Sur orientation.campusen.sn, le bachelier crée un compte pour obtenir son Numéro d'Identification Nationale de l'Étudiant (INE).</p>
+        </li>
+        <li data-n="2">
+          <h4>Formuler ses choix d'orientation</h4>
+          <p>Avec l'INE, le candidat sélectionne ses vœux parmi les filières des établissements publics : jusqu'à 18 choix répartis entre les 10 universités publiques (dont l'UGB), et autant pour les ISEP.</p>
+          <span class="date">Session 2026 : du 17 août au 13 septembre, 23h59 (délai de rigueur)</span>
+        </li>
+        <li data-n="3">
+          <h4>Suivre la proposition d'orientation</h4>
+          <p>Aucune dérogation n'est acceptée après la date de clôture. Les identifiants Campusen sont strictement personnels : ne jamais les transmettre à un tiers ou à une association.</p>
+        </li>
+        <li data-n="4">
+          <h4>Valider et payer sous 8 jours</h4>
+          <p>Une fois orienté, le bachelier dispose d'un délai pour s'acquitter des droits d'inscription, sous peine de perdre le bénéfice de son orientation.</p>
+        </li>
+      </ol>
+      <div class="card">
+        <span class="tag warn">Vigilance</span>
+        <h3>Dates à reconfirmer chaque année</h3>
+        <p>Le calendrier (ouverture, clôture, nombre de choix) est fixé chaque année par la DGES. Vérifiez les dates en vigueur directement sur orientation.campusen.sn avant de commencer vos démarches.</p>
+      </div>
+    `
+  },
+  {
+    id: "inscription",
+    label: "Inscription UGB",
+    title: "Inscription administrative à l'UGB",
+    lede: "Une fois orienté vers l'UGB par Campusen, l'inscription administrative se fait sur le campus, en 5 étapes.",
+    html: `
+      <table class="docs">
+        <tr><td>①</td><td>Mise en conformité au niveau de la Direction de la Scolarité.</td></tr>
+        <tr><td>②</td><td>Obtention du code de la Bibliothèque Universitaire (non obligatoire pour les bacheliers sénégalais).</td></tr>
+        <tr><td>③</td><td>Paiement des frais d'inscription au niveau des guichets de l'Agence Comptable ou des opérateurs financiers agréés.</td></tr>
+        <tr><td>④</td><td>Visite médicale au Centre médical du CROUS.</td></tr>
+        <tr><td>⑤</td><td>Retrait de la carte d'étudiant et du certificat d'inscription à la Direction de la Scolarité.</td></tr>
+      </table>
+      <div class="card">
+        <span class="tag">Documents à présenter</span>
+        <h3>Pièces requises</h3>
+        <p>Attestation du bac (ou relevé de notes) et carte d'identité nationale.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Droits d'inscription</span>
+        <h3>25 000 FCFA</h3>
+        <p>Montant des droits d'inscription pour les nouveaux bacheliers ayant validé leur orientation sur Campusen. Les étudiants ressortissants de l'UEMOA et ceux couverts par des accords de coopération paient les mêmes droits que les étudiants sénégalais.</p>
+      </div>
+      <div class="card">
+        <span class="tag">La carte d'étudiant</span>
+        <h3>Un document à plusieurs usages</h3>
+        <p>Elle sert de carte pour les TD/TP et les cours, donne accès aux salles d'examen, à la Bibliothèque Universitaire et aux centres documentaires des UFR (avec prêt de livres de 15 jours), et fait aussi office de carte du CROUS (Centre Régional des Œuvres Universitaires de Saint-Louis).</p>
+      </div>
+    `
+  },
+  {
+    id: "contacts",
+    label: "Contacts",
+    title: "Contacts & sources",
+    lede: "Pour toute question spécifique à la filière, s'adresser directement à l'UFR CRAC.",
+    html: `
+      <div class="contact-block">
+        <div class="row"><span class="k">UFR</span><span>Civilisations, Religions, Arts et Communication (CRAC), Université Gaston Berger</span></div>
+        <div class="row"><span class="k">Adresse</span><span>UFR CRAC, BP 234, Université Gaston Berger, Saint-Louis, Sénégal</span></div>
+        <div class="row"><span class="k">Téléphone</span><span>+221 33 961 23 60</span></div>
+        <div class="row"><span class="k">Site UFR</span><span>www9.ugb.sn/crac</span></div>
+        <div class="row"><span class="k">Site UGB</span><span>www.ugb.sn</span></div>
+        <div class="row"><span class="k">Orientation</span><span>orientation.campusen.sn</span></div>
+      </div>
+      <div class="sources">
+        <h4>Sources officielles utilisées</h4>
+        <ul>
+          <li>UFR CRAC — Licence Métiers du Patrimoine : <a href="http://www9.ugb.sn/crac/index.php/component/content/article/90-crac/116-descriptif-licence-metiers-patrimoine" target="_blank">www9.ugb.sn/crac</a></li>
+          <li>UFR CRAC — Master Gestion des biens, sites et institutions du patrimoine : <a href="http://www9.ugb.sn/crac/index.php/component/content/article/90-crac/125-descriptif-master-gestion-biens-sites-institutions" target="_blank">www9.ugb.sn/crac</a></li>
+          <li>UFR CRAC — Présentation & contact : <a href="http://www9.ugb.sn/crac/index.php/a-propos/presentation-de-l-ufr" target="_blank">www9.ugb.sn/crac</a></li>
+          <li>UGB — Admission & Inscription : <a href="https://www.ugb.sn/fr/admission" target="_blank">ugb.sn/fr/admission</a>, <a href="https://www.ugb.sn/fr/inscription-et-reinscription" target="_blank">ugb.sn/fr/inscription-et-reinscription</a></li>
+          <li>CAMPUSEN — Plateforme officielle d'orientation : <a href="https://orientation.campusen.sn/" target="_blank">orientation.campusen.sn</a></li>
+        </ul>
+      </div>
+    `
+  }
+];
+
+const nav = document.getElementById('nav');
+const main = document.getElementById('main');
+
+sections.forEach((s, i) => {
+  const btn = document.createElement('button');
+  btn.textContent = s.label;
+  btn.dataset.id = s.id;
+  if (i === 0) btn.classList.add('active');
+  btn.addEventListener('click', () => showSection(s.id));
+  nav.appendChild(btn);
+
+  const sec = document.createElement('section');
+  sec.id = s.id;
+  if (i === 0) sec.classList.add('active');
+  sec.innerHTML = `
+    <h2 class="section-title"><span class="num">${String(i+1).padStart(2,'0')}</span>${s.title}</h2>
+    <p class="section-lede">${s.lede}</p>
+    ${s.html}
+  `;
+  main.appendChild(sec);
+});
+
+function showSection(id){
+  document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === id));
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('active', b.dataset.id === id));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- Installation PWA ---------- */
+let deferredPrompt = null;
+const installBar = document.getElementById('installBar');
+const installBtn = document.getElementById('installBtn');
+const dismissBtn = document.getElementById('dismissBtn');
+const iosModal = document.getElementById('iosModal');
+
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+if (!isStandalone && !sessionStorage.getItem('installDismissed')) {
+  if (isIOS) {
+    // iOS ne déclenche pas beforeinstallprompt : on montre la barre avec instructions manuelles
+    installBar.classList.add('show');
+  }
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (!isStandalone && !sessionStorage.getItem('installDismissed')) {
+    installBar.classList.add('show');
+  }
+});
+
+installBtn.addEventListener('click', async () => {
+  if (isIOS) {
+    iosModal.classList.add('show');
+    return;
+  }
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBar.classList.remove('show');
+  } else {
+    iosModal.classList.add('show'); // fallback générique
+  }
+});
+
+dismissBtn.addEventListener('click', () => {
+  installBar.classList.remove('show');
+  sessionStorage.setItem('installDismissed', '1');
+});
+
+window.addEventListener('appinstalled', () => {
+  installBar.classList.remove('show');
+});
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+</script>
+
+</body>
+</html>
