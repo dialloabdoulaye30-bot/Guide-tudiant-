@@ -2,7 +2,7 @@
   "name": "Guide du bachelier — Métiers du Patrimoine, UGB",
   "short_name": "Patrimoine UGB",
   "description": "Guide d'orientation et d'intégration pour la Licence Métiers du Patrimoine, UFR CRAC, Université Gaston Berger de Saint-Louis.",
-  "start_url": "./guide-patrimoine-ugb.html",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
