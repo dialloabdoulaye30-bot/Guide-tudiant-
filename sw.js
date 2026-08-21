@@ -1,6 +1,6 @@
 const CACHE_NAME = "patrimoine-ugb-v1";
 const ASSETS = [
-  "./guide-patrimoine-ugb.html",
+  "./index.html",
   "./manifest.json",
   "./icon.svg"
 ];
